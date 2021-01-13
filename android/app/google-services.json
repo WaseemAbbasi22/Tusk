@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "815369573411",
+    "project_id": "coffeapp-9a5a8",
+    "storage_bucket": "coffeapp-9a5a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815369573411:android:a4b747c8026c35dc930d96",
+        "android_client_info": {
+          "package_name": "com.example.coffe_app_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815369573411-0btj7t9rte2qt0pqk5j98u057kcrsamm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEcncK5WOSTo0c2yaEFUdo9TJO4KMtJlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "815369573411-0btj7t9rte2qt0pqk5j98u057kcrsamm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815369573411:android:7333ef785440129a930d96",
+        "android_client_info": {
+          "package_name": "com.flutterapp.coffe_app_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815369573411-0btj7t9rte2qt0pqk5j98u057kcrsamm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEcncK5WOSTo0c2yaEFUdo9TJO4KMtJlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "815369573411-0btj7t9rte2qt0pqk5j98u057kcrsamm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
