@@ -1,3 +1,4 @@
+import 'package:coffe_app_firebase/screen/Authenticate/authenticate.dart';
 import 'package:coffe_app_firebase/screen/home/home.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,6 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Home();
+    return Authenticate();
   }
 }
