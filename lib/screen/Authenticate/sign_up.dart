@@ -2,33 +2,29 @@ import 'package:coffe_app_firebase/models/user.dart';
 import 'package:coffe_app_firebase/services/auth.dart';
 import 'package:flutter/material.dart';
 
-class SignIn extends StatefulWidget {
+class Signup extends StatefulWidget {
   final Function toogleView;
-  SignIn({this.toogleView});
-
+  Signup({this.toogleView});
   @override
-  _SignInState createState() => _SignInState();
+  _SignupState createState() => _SignupState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignupState extends State<Signup> {
   AuthService _authService = AuthService();
   FUser _user = FUser();
-  //local variable for email and password...
-  // String email = '';
-  // String password = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
-        title: Text("Sign In to Coffe App"),
+        title: Text("Sign up to Coffe App"),
         elevation: 0.0,
         centerTitle: true,
         actions: [
           FlatButton.icon(
             icon: Icon(Icons.person),
-            label: Text('Sign up'),
+            label: Text('Sign In'),
             onPressed: () {
               widget.toogleView();
             },
@@ -64,7 +60,7 @@ class _SignInState extends State<SignIn> {
                     print(_user.getPass());
                   },
                   child: Text(
-                    'Sign In',
+                    'Sign Up',
                     style: TextStyle(color: Colors.white),
                   ),
                   color: Colors.pink[400],
@@ -75,14 +71,3 @@ class _SignInState extends State<SignIn> {
     );
   }
 }
-// RaisedButton(
-//           child: Text('Sign In Anon'),
-//           onPressed: () async {
-//             dynamic result = await _authService.signInAnon();
-//             if (result == null) {
-//               print("Sign in failed");
-//             } else {
-//               print("SignIn successful");
-//               print(result.uid);
-//             }
-//           },
