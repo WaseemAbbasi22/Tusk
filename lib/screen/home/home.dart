@@ -1,5 +1,7 @@
+import 'package:coffe_app_firebase/models/user.dart';
 import 'package:coffe_app_firebase/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -10,6 +12,8 @@ class _HomeState extends State<Home> {
   AuthService _authService = AuthService();
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<FUser>(context);
+    String useremail = user.getEmail();
     return Scaffold(
       backgroundColor: Colors.brown[50],
       appBar: AppBar(

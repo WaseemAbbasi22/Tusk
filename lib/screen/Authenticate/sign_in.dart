@@ -12,7 +12,9 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   AuthService _authService = AuthService();
+  final _formkey = GlobalKey<FormState>();
   FUser _user = FUser();
+  String error = '';
   //local variable for email and password...
   // String email = '';
   // String password = '';
@@ -38,19 +40,25 @@ class _SignInState extends State<SignIn> {
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
           child: Form(
+            key: _formkey,
             child: Column(
               children: <Widget>[
                 SizedBox(
                   height: 20.0,
                 ),
-                TextFormField(onChanged: (val) {
-                  setState(() => _user.setEmail(val));
-                }),
+                TextFormField(
+                    validator: (val) => val.isEmpty ? 'Enter Email ' : null,
+                    onChanged: (val) {
+                      setState(() => _user.setEmail(val));
+                    }),
                 SizedBox(
                   height: 20.0,
                 ),
                 TextFormField(
                   obscureText: true,
+                  validator: (val) => val.isEmpty || val.length < 4
+                      ? 'Enter password more than 4 digits '
+                      : null,
                   onChanged: (val) {
                     setState(() => _user.setPass(val));
                   },
@@ -60,14 +68,27 @@ class _SignInState extends State<SignIn> {
                 ),
                 FlatButton(
                   onPressed: () async {
-                    print(_user.getEmail());
-                    print(_user.getPass());
+                    if (_formkey.currentState.validate()) {
+                      dynamic result =
+                          await _authService.logInWithEmailandPassword(
+                              _user.getEmail(), _user.getPass());
+                      if (result == null) {
+                        setState(() => error = "cradentials not match:");
+                      }
+                    }
                   },
                   child: Text(
                     'Sign In',
                     style: TextStyle(color: Colors.white),
                   ),
                   color: Colors.pink[400],
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  error,
+                  style: TextStyle(fontSize: 18.0, color: Colors.red),
                 ),
               ],
             ),
