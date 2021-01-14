@@ -54,6 +54,7 @@ class _SignupState extends State<Signup> {
                               val.isEmpty ? 'Enter Email ' : null,
                           onChanged: (val) {
                             setState(() => _user.setEmail(val));
+                            print(_user.getEmail());                   
                           }),
                       SizedBox(
                         height: 20.0,
