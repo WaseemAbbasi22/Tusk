@@ -19,8 +19,8 @@ class _SignInState extends State<SignIn> {
   String error = '';
   bool loading = false;
   //local variable for email and password...
-  // String email = '';
-  // String password = '';
+  String email = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     return loading
@@ -57,7 +57,7 @@ class _SignInState extends State<SignIn> {
                           validator: (val) =>
                               val.isEmpty ? 'Enter Email ' : null,
                           onChanged: (val) {
-                            setState(() => _user.setEmail(val));
+                            setState(() => email = val);
                           }),
                       SizedBox(
                         height: 20.0,
@@ -70,7 +70,7 @@ class _SignInState extends State<SignIn> {
                             ? 'Enter password more than 4 digits '
                             : null,
                         onChanged: (val) {
-                          setState(() => _user.setPass(val));
+                          setState(() => password = val);
                         },
                       ),
                       SizedBox(
@@ -82,9 +82,8 @@ class _SignInState extends State<SignIn> {
                             setState(() {
                               loading = true;
                             });
-                            dynamic result =
-                                await _authService.logInWithEmailandPassword(
-                                    _user.getEmail(), _user.getPass());
+                            dynamic result = await _authService
+                                .logInWithEmailandPassword(email, password);
                             if (result == null) {
                               setState(() {
                                 error = "cradentials not match:";

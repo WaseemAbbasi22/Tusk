@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 class Signup extends StatefulWidget {
   final Function toogleView;
   Signup({this.toogleView});
+
   @override
   _SignupState createState() => _SignupState();
 }
@@ -17,6 +18,9 @@ class _SignupState extends State<Signup> {
   FUser _user = FUser();
   String error = '';
   bool loading = false;
+
+  String email = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     return loading
@@ -53,8 +57,7 @@ class _SignupState extends State<Signup> {
                           validator: (val) =>
                               val.isEmpty ? 'Enter Email ' : null,
                           onChanged: (val) {
-                            setState(() => _user.setEmail(val));
-                            print(_user.getEmail());                   
+                            setState(() => email = val);
                           }),
                       SizedBox(
                         height: 20.0,
@@ -67,7 +70,7 @@ class _SignupState extends State<Signup> {
                             ? 'Enter password more than 4 digits '
                             : null,
                         onChanged: (val) {
-                          setState(() => _user.setPass(val));
+                          setState(() => password = val);
                         },
                       ),
                       SizedBox(
@@ -79,9 +82,8 @@ class _SignupState extends State<Signup> {
                             setState(() {
                               loading = true;
                             });
-                            dynamic result =
-                                await _authService.registerWithEmailandPassword(
-                                    _user.getEmail(), _user.getPass());
+                            dynamic result = await _authService
+                                .registerWithEmailandPassword(email, password);
                             if (result == null) {
                               setState(() {
                                 error = 'Please enter valid information';

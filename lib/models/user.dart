@@ -20,3 +20,11 @@ class FUser {
     return this.password;
   }
 }
+
+class UserData {
+  final String uid;
+  final String name;
+  final String sugers;
+  final int strength;
+  UserData({this.uid, this.name, this.sugers, this.strength});
+}

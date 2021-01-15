@@ -2,6 +2,7 @@
 import 'package:coffe_app_firebase/models/brew.dart';
 import 'package:coffe_app_firebase/models/user.dart';
 import 'package:coffe_app_firebase/screen/home/brew_list.dart';
+import 'package:coffe_app_firebase/screen/home/settings_form.dart';
 import 'package:coffe_app_firebase/services/auth.dart';
 import 'package:coffe_app_firebase/services/database.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,21 @@ class _HomeState extends State<Home> {
   AuthService _authService = AuthService();
   @override
   Widget build(BuildContext context) {
+    void _showBottomSheet() {
+      showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Container(
+              color: Colors.brown[50],
+              padding: EdgeInsets.symmetric(
+                horizontal: 60.0,
+                vertical: 20.0,
+              ),
+              child: FormSettings(),
+            );
+          });
+    }
+
     final user = Provider.of<FUser>(context);
     String useremail = user.getEmail();
     return StreamProvider<List<Brew>>.value(
@@ -25,7 +41,7 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           backgroundColor: Colors.brown[400],
           title: Text('Coffe App'),
-          centerTitle: true,
+          //centerTitle: true,
           elevation: 0.0,
           actions: [
             FlatButton.icon(
@@ -35,9 +51,21 @@ class _HomeState extends State<Home> {
                 await _authService.logOut();
               },
             ),
+            FlatButton.icon(
+              icon: Icon(Icons.settings),
+              label: Text('Setting'),
+              onPressed: () => _showBottomSheet(),
+            ),
           ],
         ),
-        body: BrewList(),
+        body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/coffee_bg.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: BrewList()),
       ),
     );
   }
